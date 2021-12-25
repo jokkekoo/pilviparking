@@ -1,0 +1,164 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<!--- <meta http-equiv="refresh" content="30" /> ---!>
+	  <meta charset="utf-8" />
+	  <title>Pilvi Pysäköinti</title>
+	  <link rel="shortcut icon" href="kuvat/128finalLOGO.ico" type="image/x-icon">
+	  <link rel="preconnect" href="https://fonts.googleapis.com">
+	  <link rel="preconnect" href="https://fonts.gstatic.com">
+	  <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet">
+	  <style type="text/css">
+html, body, #basicMap {
+	width: 100%;
+	height: 99%;
+	margin: 0;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	text-rendering: optimizeLegibility;
+};
+	  </style>
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
+	  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+	  <script>
+		var my_arr = [];
+		var maxPaikat = 36;
+		var vapaatPaikat = 0;
+		jQuery.ajax({
+		type: "GET",
+		url:"dbdata.php",
+		async:false,
+		success: function(response){
+		my_arr = response.split("|");
+		vapaatPaikat = maxPaikat - my_arr[0];}
+		});				
+	  </script>
+	  <script src="OpenLayers/OpenLayers.js"></script>
+	  <script>
+		  function init() {
+			  map = new OpenLayers.Map("basicMap");
+			  var mapnik         = new OpenLayers.Layer.OSM();
+	 		  var fromProjection = new OpenLayers.Projection("EPSG:4326");   // Transform from WGS 1984
+			  var toProjection   = new OpenLayers.Projection("EPSG:900913"); // to Spherical Mercator Projection
+			  var position       = new OpenLayers.LonLat(25.466111,65.059167).transform( fromProjection, toProjection);
+			  var zoom           = 16; 
+
+			  map.addLayer(mapnik);
+			  map.setCenter(position, zoom );
+
+
+			  var markers = new OpenLayers.Layer.Markers( "Markers" );
+			  map.addLayer(markers);
+
+			  var size = new OpenLayers.Size(30,32);
+			  var offset = new OpenLayers.Pixel(-(size.w/2), -size.h);
+			  var icon = new OpenLayers.Icon('kuvat/autoparkki.png', size, offset);
+
+			  markerp7 = new OpenLayers.Marker(new OpenLayers.LonLat(25.46817,65.06223).transform( fromProjection, toProjection ), icon.clone());
+			  markerp7.events.register('mousedown', markerp7, function(evt) { popupp7.show(); map.panTo(position7); if(popupP3.visible() || popupp8.visible() || popupp4.visible()){popupP3.hide();popupp8.hide();popupp4.hide();} OpenLayers.Event.stop(evt); });
+			  markers.addMarker(markerp7);
+
+			  markerp4 = new OpenLayers.Marker(new OpenLayers.LonLat(25.47138,65.06109).transform( fromProjection, toProjection ), icon.clone());
+			  markerp4.events.register('mousedown', markerp4, function(evt) { popupp4.show(); map.panTo(position4); if(popupP3.visible() || popupp8.visible() || popupp7.visible()){popupP3.hide();popupp8.hide();popupp7.hide();} OpenLayers.Event.stop(evt); });
+			  markers.addMarker(markerp4);
+
+			  markerp8 = new OpenLayers.Marker(new OpenLayers.LonLat(25.463522,65.061209).transform( fromProjection, toProjection), icon.clone());
+			  markerp8.events.register('mousedown', markerp4, function(evt) { map.addPopup(popupp8); map.panTo(position8); popupp8.show(); if(popupP3.visible() || popupp4.visible() || popupp7.visible()){popupP3.hide();popupp4.hide();popupp7.hide();} OpenLayers.Event.stop(evt); });
+			  markers.addMarker(markerp8);
+
+			  markerp9 = new OpenLayers.Marker(new OpenLayers.LonLat(25.462356,65.059775).transform( fromProjection, toProjection), icon.clone());
+			  markers.addMarker(markerp9);
+
+			  markerp12 = new OpenLayers.Marker(new OpenLayers.LonLat(25.462259,65.058024).transform( fromProjection, toProjection), icon.clone());
+			  markers.addMarker(markerp12);
+
+
+			  markerp11 = new OpenLayers.Marker(new OpenLayers.LonLat(25.464915,65.056877).transform( fromProjection, toProjection), icon.clone());
+			  markers.addMarker(markerp11);
+
+
+			  markerp1 = new OpenLayers.Marker(new OpenLayers.LonLat(25.471069,65.058598).transform( fromProjection, toProjection), icon.clone());
+			  markers.addMarker(markerp1);
+
+
+			  markerp2 = new OpenLayers.Marker(new OpenLayers.LonLat(25.471036,65.059444).transform( fromProjection, toProjection), icon.clone());
+			  markers.addMarker(markerp2);
+
+			  markerp3 = new OpenLayers.Marker(new OpenLayers.LonLat(25.469098, 65.060645).transform( fromProjection, toProjection),icon.clone());
+			  markerp3.events.register('mousedown', markerp3, function(evt) {popupP3.show(); map.panTo(position3); if(popupp7.visible() || popupp8.visible() || popupp4.visible()){popupp7.hide(); popupp8.hide(); popupp4.hide();} OpenLayers.Event.stop(evt); });				
+			  markers.addMarker(markerp3);
+
+			  popupP3 = new OpenLayers.Popup("P3",
+				  new OpenLayers.LonLat(25.469098, 65.060645).transform( fromProjection, toProjection),
+				  new OpenLayers.Size(420,275),
+				  "<img src='"+ my_arr[1] +"' width='400' height='210'> <p style='font-size:22px;color:white;font-family: Ubuntu, sans-serif:'>Paikkoja Vapaana: " + vapaatPaikat + " </p>",
+				  true);
+			
+			  popupp7 = new OpenLayers.Popup("P7",
+				  new OpenLayers.LonLat(25.46817,65.06223).transform( fromProjection, toProjection ),
+				  new OpenLayers.Size(300,200),
+				  "<img src='kuvat/murwu.jpg' width='300' height='200'>",
+				  true);
+
+			  popupp4 = new OpenLayers.Popup("P4",
+				  new OpenLayers.LonLat(25.47138,65.06109).transform( fromProjection, toProjection ),
+				  new OpenLayers.Size(420,275),
+				  "<img src='"+ my_arr[1] +"' width='400' height='210'> <p style='font-size:22px;color:white;font-family: Ubuntu, sans-serif;'>Paikkoja Vapaana: " + vapaatPaikat + " </p>",
+				  true);
+			  popupp8 = new OpenLayers.Popup("P8",
+				  new OpenLayers.LonLat(25.463522,65.061209).transform( fromProjection, toProjection ),
+				  new OpenLayers.Size(420,275),
+				  "<img src='"+ my_arr[1] +"' width='400' height='210'> <p style='font-size:22px;color:white;font-family: Ubuntu, sans-serif;'>Paikkoja Vapaana: " + vapaatPaikat + " </p>",
+				  true);
+
+			  //mapnik.events.register('mousedown', mapnik, function(evt) {popupP3.hide(); OpenLayers.Event.stop(evt);});
+			  	  
+
+			  var position8 = new OpenLayers.LonLat(25.463522,65.061209).transform(fromProjection, toProjection);
+			  var position3 = new OpenLayers.LonLat(25.469098,65.060645).transform(fromProjection, toProjection);
+			  var position4 = new OpenLayers.LonLat(25.47138,65.06109).transform(fromProjection, toProjection);
+			  var position7 = new OpenLayers.LonLat(25.46817,65.06223).transform(fromProjection, toProjection);
+			  popupp7.setBackgroundColor("#2e2e1f");
+			  popupp4.setBackgroundColor("#2e2e1f");
+			  popupp8.setBackgroundColor("#2e2e1f");
+			  popupP3.setBackgroundColor("#2e2e1f");
+
+			  map.addPopup(popupp7);
+			  map.addPopup(popupp4);
+			  map.addPopup(popupP3);
+			  popupP3.hide();
+			  popupp7.hide();
+			  popupp8.hide();
+			  popupp4.hide();
+		  }
+	  </script>
+	</head>
+	<body onload="init();">
+		<div>
+			<nav class="navbar fixed-top navbar-dark bg-primary">
+				<a class="navbar-brand" href="" style="font-size: 22px;font-family: Ubuntu, sans-serif;">
+					<img src="kuvat/1finalLOGO.png" width="54" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+					Pilvi Pysäköinti
+				</a>
+			</nav>
+		</div>
+		<div id="basicMap"></div>
+		<div>
+			<nav class="navbar fixed-bottom navbar-dark bg-primary">
+				</p class="float-none">
+				<small class="text-muted" style="font-family: Ubuntu, sans-serif;">&copy; Group-3 Matti Polojärvi Jokke Kivijärvi Juhani Vuorenmaa</small>
+				</p>
+			</nav>
+		</div>
+	</body>
+
+	<form action="insert.php" method="POST" enctype="multipart/form-data">
+		<input type="hidden" name="submitted" value="true"/>
+		<input type="hidden" name="MAX_FILE_SIZE" value="512000"/>
+		<input name="image" type="file"/>
+		<input type="text" name="paikat"/>
+		<input type="submit" value="send"/> 
+	</form>
+
+</html>

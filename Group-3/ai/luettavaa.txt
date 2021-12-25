@@ -1,0 +1,3 @@
+Kloonattu repo AlexeyAB, käytämme tätä projektissamme tunnistamaan montako
+autoa on parkkipaikalla.
+https://github.com/AlexeyAB/darknet
