@@ -23,7 +23,7 @@ def takePic():
 
 def sendPic(img):
     #url = 'http://192.168.0.117/lataaja.php'
-    url = 'http://kvp0.ddns.net/lataaja.php'
+    url = ''
     #url = 'https://www.ipt.oamk.fi/linux183/upload.php'
 
     files = {'image': open(img, 'rb')}
